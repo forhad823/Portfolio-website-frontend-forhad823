@@ -63,11 +63,11 @@ export function AboutSection() {
     <section
       id="about"
       aria-label="About Me"
-      className="py-20 scroll-mt-20 sm:py-28"
+      className="py-10 scroll-mt-16 sm:py-14"
     >
       <PageContainer>
         {/* Section header */}
-        <SectionHeading title="About Me" className="mb-10" />
+        <SectionHeading title="About Me" className="mb-6" />
 
         {/* Concise bullet-point list */}
         <div className="glass-surface mx-auto max-w-2xl rounded-2xl p-8 sm:p-10">

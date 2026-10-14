@@ -18,12 +18,12 @@ export function HomeSection() {
     <section
       id="home"
       aria-label="Home"
-      className="flex min-h-dvh items-center scroll-mt-20 py-24"
+      className="flex min-h-[calc(100dvh-4rem)] items-center scroll-mt-16 py-12"
     >
       <PageContainer>
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           {/* ── Left: Text content ── */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {/* Name + designation */}
             <SectionHeading
               as="h1"
@@ -48,7 +48,7 @@ export function HomeSection() {
             </p>
 
             {/* Contact details — email and phone */}
-            <div className="flex flex-col md:flex-row md:gap-4 gap-3 text-sm sm:text-base">
+            <div className="flex flex-col md:flex-row md:gap-4 gap-3 md:justify-between  text-sm sm:text-base">
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="group flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
@@ -79,12 +79,12 @@ export function HomeSection() {
             </div>
 
             {/* --------Social links + Resume download button -------*/}
-            <div className="flex flex-col md:flex-row md:gap-4 gap-3 mt-4 justify-between items-start md:items-center">
+            <div className="flex flex-col md:flex-row md:gap-4 gap-3 mt-2 justify-between items-start md:items-center">
               {/* Social links */}
-              <SocialLinks size="md" iconSize={20} className="mt-2" />
+              <SocialLinks size="md" iconSize={20} className="mt-1" />
 
               {/* Resume download button */}
-              <div className="mt-4">
+              <div className="mt-2">
                 <a
                   href={contactInfo.resumeUrl}
                   download

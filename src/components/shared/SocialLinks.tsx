@@ -1,9 +1,4 @@
-import {
-  FaFacebook,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-} from "react-icons/fa6";
+import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { socialLinks } from "@/data/contact";
 
@@ -47,7 +42,7 @@ export function SocialLinks({
 
   return (
     <ul
-      role="list"
+      // role="list"
       aria-label="Social media profiles"
       className={cn("flex flex-wrap items-center gap-3", className)}
     >

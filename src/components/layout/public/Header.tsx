@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import { ForhadLogo } from "./ForhadLogo";
 import { HeaderNav } from "./HeaderNav";
 import { MobileNav } from "./MobileNav";
@@ -5,32 +9,63 @@ import { PageContainer } from "@/components/shared/PageContainer";
 import { contactInfo } from "@/data/contact";
 
 /**
- * Header — sticky, transparent-to-glass navigation bar.
+ * Header — sticky navigation bar that starts fully transparent at the top
+ * of the page and transitions to a glass surface once the user scrolls past
+ * the hero section.
  *
- * Remains a Server Component: only MobileNav (the interactive hamburger +
- * Sheet) is a Client Component. Tailwind's `scroll-mt-20` is added to each
- * section so the sticky header never obscures headings on anchor navigation.
+ * Strategy: an IntersectionObserver watches a 1px sentinel div placed just
+ * below the hero. When the sentinel leaves the viewport (user has scrolled
+ * down), we apply the glass styles. When it re-enters (user scrolled back
+ * to top), we restore transparency. This is lightweight, jank-free, and
+ * works without polling scroll position.
  *
- * Visual strategy:
- * – Starts transparent over the circuit-board background.
- * – Becomes glass-surface-strong (backdrop-blur + dark tint) on scroll via
- *   the CSS class `header-scrolled` toggled by a tiny inline script-free
- *   approach: we use a CSS scroll-driven hack or simply always apply the
- *   glass treatment since the header sits above the background image anyway.
- *   For a static portfolio this is the right pragmatic choice.
+ * "use client" is required here only because we need useState / useEffect
+ * for the IntersectionObserver. MobileNav was already a client component.
  */
 export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Glass backdrop — always on so text is always readable */}
-      <div className="glass-surface-strong border-b border-border/60">
+    <>
+      {/*
+       * Sentinel: a 1px element placed at the very top of the document body.
+       * When it scrolls out of view, the header gets the glass treatment.
+       */}
+      <div
+        ref={sentinelRef}
+        aria-hidden="true"
+        className="absolute top-0 h-px w-full"
+      />
+
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "glass-surface-strong border-b border-border/60"
+            : "border-b border-transparent bg-transparent",
+        )}
+      >
         <PageContainer>
           <div className="flex h-16 items-center justify-between gap-4">
             {/* ── Left: Logo ── */}
             <a
               href="#home"
               aria-label="Forhad — go to top"
-              className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-sm"
+              className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               <ForhadLogo height={32} />
             </a>
@@ -42,13 +77,13 @@ export function Header() {
 
             {/* ── Right: Resume button + Mobile hamburger ── */}
             <div className="flex shrink-0 items-center gap-2">
-              {/* Resume — visible on all breakpoints */}
+              {/* Resume — visible on sm+ */}
               <a
                 href={contactInfo.resumeUrl}
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden rounded-lg border border-primary bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex items-center gap-1.5"
+                className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary/10 px-4 py-1.5 text-sm font-semibold text-secondary-foreground backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Resume
                 <svg
@@ -74,7 +109,7 @@ export function Header() {
             </div>
           </div>
         </PageContainer>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }

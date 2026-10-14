@@ -20,8 +20,12 @@ export default function PublicLayout({
     <>
       <Header />
 
-      {/* Main content — scroll-mt prevents sticky header from obscuring headings */}
-      <main className="scroll-mt-20">{children}</main>
+      {/*
+       * pt-16 offsets the fixed 64px (h-16) header so content is never
+       * hidden behind it. scroll-mt-20 on individual sections handles
+       * anchor-jump offsets independently.
+       */}
+      <main className="pt-16">{children}</main>
 
       <Footer />
     </>
