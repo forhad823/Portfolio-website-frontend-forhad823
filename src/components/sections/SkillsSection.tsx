@@ -33,8 +33,8 @@ export function SkillsSection() {
 
         <div className="grid gap-8 lg:grid-cols-3">
           {/* ── Left / centre: Skill groups (2 wide columns on lg) ── */}
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col gap-6 md:col-span-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {skillCategories.map((category) => (
                 <div
                   key={category.id}
@@ -62,40 +62,39 @@ export function SkillsSection() {
               ))}
             </div>
           </div>
+        </div>
+        {/* ── Right: Education card ── */}
+        <div className="flex flex-col gap-4">
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-primary">
+            Education
+          </h3>
 
-          {/* ── Right: Education card ── */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-primary">
-              Education
-            </h3>
+          {education.map((edu) => (
+            <div
+              key={`${edu.institution}-${edu.level}`}
+              className="glass-surface flex flex-col gap-4 rounded-2xl p-5"
+            >
+              {/* Icon row */}
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <GraduationCap size={22} aria-hidden="true" />
+              </div>
 
-            {education.map((edu) => (
-              <div
-                key={`${edu.institution}-${edu.level}`}
-                className="glass-surface flex flex-col gap-4 rounded-2xl p-5"
-              >
-                {/* Icon row */}
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <GraduationCap size={22} aria-hidden="true" />
-                </div>
-
-                {/* Level + group */}
-                <div>
-                  <p className="text-sm font-semibold leading-snug text-foreground">
-                    {edu.level}
-                  </p>
-                  <p className="mt-0.5 text-xs text-muted-foreground">
-                    Group: {edu.group}
-                  </p>
-                </div>
-
-                {/* Institution */}
-                <p className="text-sm font-medium text-foreground">
-                  {edu.institution}
+              {/* Level + group */}
+              <div>
+                <p className="text-sm font-semibold leading-snug text-foreground">
+                  {edu.level}
+                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Group: {edu.group}
                 </p>
               </div>
-            ))}
-          </div>
+
+              {/* Institution */}
+              <p className="text-sm font-medium text-foreground">
+                {edu.institution}
+              </p>
+            </div>
+          ))}
         </div>
       </PageContainer>
     </section>

@@ -126,7 +126,7 @@ export function HomeSection() {
               {/* Profile image */}
               <div className="glass-surface relative overflow-hidden rounded-2xl border-2 border-primary/30 p-2">
                 <Image
-                  src="/my-face-image.png"
+                  src="/my-face-image.png" 
                   alt={`${contactInfo.name} — Full Stack Web Developer`}
                   width={400}
                   height={400}

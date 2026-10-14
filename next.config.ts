@@ -1,15 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // images: {
-  //   remotePatterns: [
-  //     { protocol: "https", hostname: "res.cloudinary.com" },
-  //     { protocol: "https", hostname: "lh3.googleusercontent.com" },
-  //   ],
-  // },
+  images: { unoptimized: true },
   reactStrictMode: true,
   reactCompiler: true,
-  output: "export",
+  // output: "export", // uncomment the line before running build to deploy on netlify
 };
 
 export default nextConfig;
