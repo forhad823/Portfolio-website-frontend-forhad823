@@ -11,6 +11,11 @@ A modern, responsive, single-page developer portfolio for **Md. Forhad Uddin**, 
 
 ---
 
+## Live links:
+
+> latest: https://forhad-823.netlify.app <br/>
+> old: https://forhad-uddin.vercel.app
+
 ## Overview
 
 The site is one continuous, five-section page designed to be scanned by recruiters in roughly 3–4 screen scrolls:
