@@ -22,7 +22,7 @@ export function SkillsSection() {
     <section
       id="skills"
       aria-label="Skills and Education"
-      className="py-10 scroll-mt-16 sm:py-14"
+      className="py-8 scroll-mt-16 sm:py-10"
     >
       <PageContainer>
         <SectionHeading
@@ -53,11 +53,7 @@ export function SkillsSection() {
                         variant="outline"
                         className="text-xs font-medium border-blue-300"
                       >
-                        {skill.icon && (
-                          <span className="mr-2">
-                            <skill.icon />
-                          </span>
-                        )}
+                        {skill.icon && <skill.icon aria-hidden="true" />}
                         {skill.name}
                       </Badge>
                     ))}

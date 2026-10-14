@@ -75,7 +75,7 @@ export function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
 
           // ── mobile: bottom-sheet ──
           "fixed bottom-0 left-0 right-0 top-auto",
-          "translate-x-0 -translate-y-0", // cancel default centering transforms
+          "translate-x-0 translate-y-0", // cancel default centering transforms
           "w-full max-w-full",
           "max-h-[85dvh]",
           "rounded-t-2xl rounded-b-none",
@@ -94,35 +94,35 @@ export function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
           className="mx-auto mt-3 mb-1 h-1 w-10 shrink-0 rounded-full bg-border/60 md:hidden"
         />
 
-        {/* ── Header ── */}
-        <DialogHeader className="relative shrink-0 border-b border-border/50 px-5 py-4 md:px-7 md:py-5">
-          <DialogTitle className="pr-8 text-lg font-bold text-foreground md:text-xl">
-            {project.name}
-          </DialogTitle>
-          <p className="mt-0.5 text-sm font-medium text-primary">
-            {project.tagline}
-          </p>
-          <DialogDescription className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            {project.shortDescription}
-          </DialogDescription>
-
-          {/* Close button — top-right of header */}
-          <DialogClose
-            render={
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                aria-label="Close project details"
-                className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
-              />
-            }
-          >
-            <X size={16} aria-hidden="true" />
-          </DialogClose>
-        </DialogHeader>
-
         {/* ── Scrollable body ── */}
         <div className="flex flex-col gap-5 overflow-y-auto px-5 py-5 md:gap-6 md:px-7 md:py-6">
+          {/* ── Header ── */}
+          <DialogHeader className="relative shrink-0 border-b border-border/50 px-5 py-4 md:px-7 md:py-5">
+            <DialogTitle className="pr-8 text-lg font-bold text-foreground md:text-xl">
+              {project.name}
+            </DialogTitle>
+            <p className="mt-0.5 text-sm font-medium text-primary">
+              {project.tagline}
+            </p>
+            <DialogDescription className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {project.shortDescription}
+            </DialogDescription>
+
+            {/* Close button — top-right of header */}
+            <DialogClose
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  aria-label="Close project details"
+                  className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+                />
+              }
+            >
+              <X size={16} aria-hidden="true" />
+            </DialogClose>
+          </DialogHeader>
+
           {/* Technology stack */}
           <section aria-labelledby={`tech-${project.id}`}>
             <h3

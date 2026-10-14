@@ -123,8 +123,8 @@
   --secondary-foreground: oklch(0.78 0.15 200);
 
   /* ── Muted surfaces and text ── */
-  --muted: oklch(0.20 0.05 250 / 0.7);
-  --muted-foreground: oklch(0.70 0.04 240);
+  --muted: oklch(0.2 0.05 250 / 0.7);
+  --muted-foreground: oklch(0.7 0.04 240);
 
   /* ── Accent (hover highlights) — uses the cyan from the glow ── */
   --accent: oklch(0.78 0.15 200 / 0.15);
@@ -146,7 +146,7 @@
   /* ── Chart colours ── */
   --chart-1: oklch(0.62 0.22 240);
   --chart-2: oklch(0.78 0.15 200);
-  --chart-3: oklch(0.70 0.04 240);
+  --chart-3: oklch(0.7 0.04 240);
   --chart-4: oklch(0.35 0.08 240);
   --chart-5: oklch(0.96 0.01 240);
 
@@ -193,27 +193,37 @@ html {
  * text remains legible even over the bright glow region in the image.
  * The overlay is layered behind all child content via a pseudo-element so it
  * never obscures interactive elements.
+ *
+ * IMPORTANT — these rules live in `@layer base` on purpose. In Tailwind v4
+ * utilities are emitted inside the `utilities` cascade layer, and UNLAYERED
+ * CSS always outranks layered CSS. If `body > *` stayed unlayered it would
+ * override the sticky header's `.fixed` / `.z-50` utilities and the navbar
+ * would scroll away with the page. Base layer keeps them as weak defaults so
+ * explicit utility classes (.fixed, .z-50, …) still win.
  * ────────────────────────────────────────────────────────────────────────────
  */
-body {
-  @apply text-foreground;
-  position: relative;
-  min-height: 100dvh;
-}
+@layer base {
+  body {
+    @apply text-foreground;
+    position: relative;
+    min-height: 100dvh;
+  }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: oklch(0.10 0.05 255 / 0.55);
-  pointer-events: none;
-  z-index: 0;
-}
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: oklch(0.1 0.05 255 / 0.55);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* All direct children of body stack above the overlay */
-body > * {
-  position: relative;
-  z-index: 1;
+  /* Direct children of body stack above the overlay by default. Positioned
+     children (header, main, footer) may still override this via utilities. */
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 /* ── Base layer resets ── */

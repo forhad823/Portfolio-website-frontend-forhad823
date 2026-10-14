@@ -63,7 +63,7 @@ export function AboutSection() {
     <section
       id="about"
       aria-label="About Me"
-      className="py-10 scroll-mt-16 sm:py-14"
+      className="py-8 scroll-mt-16 sm:py-10"
     >
       <PageContainer>
         {/* Section header */}

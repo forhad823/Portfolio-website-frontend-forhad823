@@ -38,7 +38,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {/* Subtle overlay to keep text legible */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+          className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"
         />
       </div>
 

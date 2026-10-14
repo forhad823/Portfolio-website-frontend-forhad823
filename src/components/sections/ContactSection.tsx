@@ -125,7 +125,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-label="Contact"
-      className="py-10 scroll-mt-16 sm:py-14"
+      className="py-8 scroll-mt-16 sm:py-10"
     >
       <PageContainer>
         <SectionHeading
