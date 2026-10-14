@@ -19,7 +19,7 @@ the entire page will use public/website-background.png as its background even th
 > Easy access to all sections of the portfolio from the navbar (middle of navbar).
 > 'Resume' Download Button (Right corner of Navbar)
 A clearly visible button in the hero section that allows visitors to view and download your resume with a single click. (**Resume will be downloaded with that click.**). 
-resume link: https://drive.google.com/file/d/1HjfeRQoODUXKBAnJHBHoZCms3Kwpa_7R/view?usp=sharing
+resume link: https://drive.google.com/uc?export=download&id=1HjfeRQoODUXKBAnJHBHoZCms3Kwpa_7R
 
 ## Designation and Introduction
 Display your professional designation Full Stack Web Developer

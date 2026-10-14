@@ -1,29 +1,88 @@
-import type { Metadata } from "next";
+import { HomeSection } from "@/components/sections/HomeSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { PageContainer } from "@/components/shared/PageContainer";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 
-export const metadata: Metadata = {
-  title: "Home",
-  // description:
-  //   "Hemacue matches verified blood donors with patients in critical need across Bangladesh. Post an emergency blood request or register as a donor — matching, verification and delivery tracking included.",
-  // keywords: [
-  //   "blood donation Bangladesh",
-  //   "emergency blood request",
-  //   "blood donor matching",
-  //   "O positive donor Dhaka",
-  // ],
-  // alternates: { canonical: "/" },
-  // openGraph: {
-  //   title: "Hemacue — Every Drop Counts. Every Second Matters.",
-  //   description:
-  //     "Emergency blood matching platform for Bangladesh: verified donors, admin-verified requests and donor-friendly cooldowns.",
-  //   url: "/",
-  //   type: "website",
-  // },
-};
-
-export default function HomePage() {
+/**
+ * page.tsx — Single-page portfolio.
+ *
+ * Section order is fixed and must never change:
+ *   1. Home        → #home        (HomeSection — built in Step 2)
+ *   2. About Me    → #about       (AboutSection — built in Step 2)
+ *   3. Projects    → #projects    (stub — built in Step 3)
+ *   4. Skills      → #skills      (stub — built in Step 4)
+ *   5. Contact     → #contact     (stub — built in Step 4)
+ *
+ * The Header/Footer shell is provided by (public)/layout.tsx.
+ * scroll-mt-20 on every section ensures anchor links account for
+ * the 64px (h-16) sticky header.
+ */
+export default function PortfolioPage() {
   return (
-    <div>
-      <p> This is home page</p>
-    </div>
+    <>
+      {/* ── 1. Home ──────────────────────────────────────────────────── */}
+      <HomeSection />
+
+      {/* ── 2. About Me ──────────────────────────────────────────────── */}
+      <AboutSection />
+
+      {/* ── 3. Projects (Step 3 stub) ────────────────────────────────── */}
+      <section
+        id="projects"
+        aria-label="Projects"
+        className="py-20 scroll-mt-20 sm:py-28"
+      >
+        <PageContainer>
+          <SectionHeading
+            title="Projects"
+            subtitle="Showcasing real-world projects built end-to-end."
+            className="mb-14"
+          />
+          <div className="glass-surface flex min-h-40 items-center justify-center rounded-2xl">
+            <p className="text-muted-foreground">
+              Project cards coming in Step 3.
+            </p>
+          </div>
+        </PageContainer>
+      </section>
+
+      {/* ── 4. Skills & Education (Step 4 stub) ─────────────────────── */}
+      <section
+        id="skills"
+        aria-label="Skills and Education"
+        className="py-20 scroll-mt-20 sm:py-28"
+      >
+        <PageContainer>
+          <SectionHeading
+            title="Skills & Education"
+            subtitle="Technologies I build with and my academic background."
+            className="mb-14"
+          />
+          <div className="glass-surface flex min-h-40 items-center justify-center rounded-2xl">
+            <p className="text-muted-foreground">
+              Skills &amp; Education coming in Step 4.
+            </p>
+          </div>
+        </PageContainer>
+      </section>
+
+      {/* ── 5. Contact (Step 4 stub) ─────────────────────────────────── */}
+      <section
+        id="contact"
+        aria-label="Contact"
+        className="py-20 scroll-mt-20 sm:py-28"
+      >
+        <PageContainer>
+          <SectionHeading
+            title="Contact"
+            subtitle="Get in touch — I'm open to new opportunities."
+            className="mb-14"
+          />
+          <div className="glass-surface flex min-h-40 items-center justify-center rounded-2xl">
+            <p className="text-muted-foreground">Contact form coming in Step 4.</p>
+          </div>
+        </PageContainer>
+      </section>
+    </>
   );
 }

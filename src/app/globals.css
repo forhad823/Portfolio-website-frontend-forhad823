@@ -1,44 +1,84 @@
+/*
+ * globals.css — Single source of truth for the portfolio design system.
+ *
+ * ─── THEME RATIONALE ────────────────────────────────────────────────────────
+ * Background image: public/website-background.png
+ *   Deep navy/indigo circuit board (#0a1a5c → #0d2280) with bright electric-blue
+ *   circuit traces (#4a7fff–#6699ff) and a glowing radial highlight center-right.
+ *
+ * Theme strategy:
+ *   • The background image is set globally on <html> with fixed/cover so it
+ *     spans the entire document behind all five sections.
+ *   • A very subtle dark overlay sits below all content via a pseudo-element
+ *     on <body> — keeps the image visible while ensuring text contrast.
+ *   • Cards/surfaces use translucent navy with backdrop-blur so the circuit
+ *     background shows through, creating depth without competing themes.
+ *   • Primary accent (#4a7fff electric blue) is sampled directly from the
+ *     circuit traces — buttons, links, focus rings all use this hue.
+ *   • Secondary accent (#5ee7df cyan) is used sparingly for hover states and
+ *     decorative highlights — it complements the blue without clashing.
+ *   • All foreground text is near-white so it reads clearly over dark surfaces.
+ *
+ * ─── TAILWIND v4 NOTES ──────────────────────────────────────────────────────
+ *   • NO tailwind.config.ts — Tailwind v4 uses CSS-only configuration.
+ *   • @theme inline maps semantic token names to the shadcn CSS variables so
+ *     both Tailwind utilities (bg-primary, text-foreground …) and shadcn
+ *     components resolve to the same colour values.
+ *   • Do NOT remove the three @import lines — they are required by the build.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ── Tailwind v4 dark-mode variant ── */
 @custom-variant dark (&:is(.dark *));
 
+/* ── Map shadcn CSS variables → Tailwind colour/radius utilities ── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+
+  /* Semantic palette */
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart tokens (retained from original shadcn zinc preset) */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar tokens */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Radii */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -48,102 +88,187 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * ─── PORTFOLIO DARK THEME ───────────────────────────────────────────────────
+ * Only one colour scheme — the portfolio is always dark to match the
+ * circuit-board background image. No light/dark toggle needed.
+ *
+ * Palette sampled from website-background.png:
+ *   --primary   electric blue  oklch(0.62 0.22 240) ≈ #4a7fff
+ *   --secondary cyan           oklch(0.78 0.15 200) ≈ #5ee7df
+ *   --background deep navy     oklch(0.14 0.06 255) ≈ #0d1b4b
+ *   --card      translucent navy (set in component layer — see below)
+ * ────────────────────────────────────────────────────────────────────────────
+ */
 :root {
-  --background: oklch(0.99 0.002 250);
-  --foreground: oklch(0.18 0.01 250);
-  --card: oklch(0.99 0.002 250);
-  --card-foreground: oklch(0.18 0.01 250);
-  --popover: oklch(0.99 0.002 250);
-  --popover-foreground: oklch(0.18 0.01 250);
-  --primary: oklch(0.55 0.22 25);
-  --primary-foreground: oklch(0.98 0.01 25);
-  --secondary: oklch(0.96 0.01 250);
-  --secondary-foreground: oklch(0.25 0.02 250);
-  --muted: oklch(0.96 0.005 250);
-  --muted-foreground: oklch(0.5 0.02 250);
-  --accent: oklch(0.93 0.05 25);
-  --accent-foreground: oklch(0.35 0.15 25);
-  --destructive: oklch(0.62 0.24 27);
-  --border: oklch(0.9 0.01 250);
-  --input: oklch(0.9 0.01 250);
-  --ring: oklch(0.55 0.22 25);
-  --chart-1: oklch(0.55 0.22 25);
-  --chart-2: oklch(0.62 0.24 27);
-  --chart-3: oklch(0.5 0.02 250);
-  --chart-4: oklch(0.93 0.05 25);
-  --chart-5: oklch(0.25 0.02 250);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.99 0.002 250);
-  --sidebar-foreground: oklch(0.18 0.01 250);
-  --sidebar-primary: oklch(0.55 0.22 25);
-  --sidebar-primary-foreground: oklch(0.98 0.01 25);
-  --sidebar-accent: oklch(0.93 0.05 25);
-  --sidebar-accent-foreground: oklch(0.35 0.15 25);
-  --sidebar-border: oklch(0.9 0.01 250);
-  --sidebar-ring: oklch(0.55 0.22 25);
-  color-scheme: light;
-}
+  /* ── Core background & foreground ── */
+  /* Used by bg-background / text-foreground utilities */
+  --background: oklch(0.14 0.06 255);
+  --foreground: oklch(0.96 0.01 240);
 
-.dark {
-  --background: oklch(0.18 0.01 250);
-  --foreground: oklch(0.98 0.002 250);
-  --card: oklch(0.22 0.01 250);
-  --card-foreground: oklch(0.98 0.002 250);
-  --popover: oklch(0.22 0.01 250);
-  --popover-foreground: oklch(0.98 0.002 250);
-  --primary: oklch(0.6 0.22 25);
-  --primary-foreground: oklch(0.98 0.01 25);
-  --secondary: oklch(0.25 0.01 250);
-  --secondary-foreground: oklch(0.96 0.01 250);
-  --muted: oklch(0.25 0.005 250);
-  --muted-foreground: oklch(0.7 0.02 250);
-  --accent: oklch(0.3 0.05 25);
-  --accent-foreground: oklch(0.95 0.05 25);
-  --destructive: oklch(0.65 0.24 27);
-  --border: oklch(0.3 0.01 250);
-  --input: oklch(0.3 0.01 250);
-  --ring: oklch(0.6 0.22 25);
-  --chart-1: oklch(0.6 0.22 25);
-  --chart-2: oklch(0.65 0.24 27);
-  --chart-3: oklch(0.7 0.02 250);
-  --chart-4: oklch(0.3 0.05 25);
-  --chart-5: oklch(0.96 0.01 250);
-  --sidebar: oklch(0.22 0.01 250);
-  --sidebar-foreground: oklch(0.98 0.002 250);
-  --sidebar-primary: oklch(0.6 0.22 25);
-  --sidebar-primary-foreground: oklch(0.98 0.01 25);
-  --sidebar-accent: oklch(0.3 0.05 25);
-  --sidebar-accent-foreground: oklch(0.95 0.05 25);
-  --sidebar-border: oklch(0.3 0.01 250);
-  --sidebar-ring: oklch(0.6 0.22 25);
+  /* ── Card / popover surfaces ── */
+  /* Semi-transparent so the circuit-board background shows through.
+     backdrop-blur must be applied on the element using these tokens. */
+  --card: oklch(0.18 0.06 255 / 0.82);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.16 0.06 255 / 0.95);
+  --popover-foreground: oklch(0.96 0.01 240);
+
+  /* ── Primary accent — electric blue sampled from circuit traces ── */
+  --primary: oklch(0.62 0.22 240);
+  --primary-foreground: oklch(0.98 0.005 240);
+
+  /* ── Secondary accent — cyan highlight ── */
+  --secondary: oklch(0.22 0.06 240 / 0.9);
+  --secondary-foreground: oklch(0.78 0.15 200);
+
+  /* ── Muted surfaces and text ── */
+  --muted: oklch(0.20 0.05 250 / 0.7);
+  --muted-foreground: oklch(0.70 0.04 240);
+
+  /* ── Accent (hover highlights) — uses the cyan from the glow ── */
+  --accent: oklch(0.78 0.15 200 / 0.15);
+  --accent-foreground: oklch(0.78 0.15 200);
+
+  /* ── Destructive ── */
+  --destructive: oklch(0.62 0.24 27);
+
+  /* ── Borders and inputs — subtle blue-glow line ── */
+  --border: oklch(0.35 0.08 240 / 0.5);
+  --input: oklch(0.22 0.06 240 / 0.8);
+
+  /* ── Focus ring — matches primary accent ── */
+  --ring: oklch(0.62 0.22 240);
+
+  /* ── Border radius ── */
+  --radius: 0.75rem;
+
+  /* ── Chart colours ── */
+  --chart-1: oklch(0.62 0.22 240);
+  --chart-2: oklch(0.78 0.15 200);
+  --chart-3: oklch(0.70 0.04 240);
+  --chart-4: oklch(0.35 0.08 240);
+  --chart-5: oklch(0.96 0.01 240);
+
+  /* ── Sidebar (inherits the same palette) ── */
+  --sidebar: oklch(0.16 0.07 255 / 0.95);
+  --sidebar-foreground: oklch(0.96 0.01 240);
+  --sidebar-primary: oklch(0.62 0.22 240);
+  --sidebar-primary-foreground: oklch(0.98 0.005 240);
+  --sidebar-accent: oklch(0.78 0.15 200 / 0.15);
+  --sidebar-accent-foreground: oklch(0.78 0.15 200);
+  --sidebar-border: oklch(0.35 0.08 240 / 0.5);
+  --sidebar-ring: oklch(0.62 0.22 240);
+
   color-scheme: dark;
 }
 
+/*
+ * ─── PAGE-WIDE BACKGROUND ───────────────────────────────────────────────────
+ * The circuit-board image is set on <html> with background-attachment:fixed so
+ * it stays in place during scroll on desktop.  On mobile, fixed attachment can
+ * cause performance issues so it falls back to scroll.  A deep navy
+ * background-color is used as the solid fallback before the image loads.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+html {
+  background-color: oklch(0.11 0.05 255); /* fallback — deep navy */
+  background-image: url("/website-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Mobile: fixed attachment is broken on most iOS browsers; use scroll */
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
+
+  @apply font-sans;
+}
+
+/*
+ * ─── DARK OVERLAY ───────────────────────────────────────────────────────────
+ * A translucent overlay on <body> slightly darkens the background image so
+ * text remains legible even over the bright glow region in the image.
+ * The overlay is layered behind all child content via a pseudo-element so it
+ * never obscures interactive elements.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+body {
+  @apply text-foreground;
+  position: relative;
+  min-height: 100dvh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: oklch(0.10 0.05 255 / 0.55);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* All direct children of body stack above the overlay */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Base layer resets ── */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-  html {
-    @apply font-sans;
-  }
 }
 
+/* ── Utility layer extras ── */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /*
+   * .glass-surface — translucent card/panel utility
+   * Use on cards, nav, dialogs and any surface that should show the circuit
+   * background behind it.  Pairs with backdrop-blur-md.
+   */
+  .glass-surface {
+    background-color: oklch(0.18 0.06 255 / 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid oklch(0.35 0.08 240 / 0.4);
+  }
+
+  /*
+   * .glass-surface-strong — higher opacity for nav/important surfaces
+   */
+  .glass-surface-strong {
+    background-color: oklch(0.15 0.06 255 / 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(0.35 0.08 240 / 0.5);
+  }
+
+  /* Smooth scroll — respects prefers-reduced-motion */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
