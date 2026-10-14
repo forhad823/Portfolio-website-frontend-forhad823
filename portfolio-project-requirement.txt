@@ -1,0 +1,97 @@
+Task Requirements:
+Build a simple, elegant, and highly recruiter-friendly design that captivates at first glance, allowing users to get a comprehensive overview in just 3 to 4 scrolls—perfectly aligning with the global recruiter mindset of 2026.
+
+Responsive and Clean UI for All Devices:
+Ensure full responsiveness across all screen sizes (desktop, laptop, tablet, mobile).
+Choose a polished and professional color scheme. 
+
+include the code into implementation-plan.md file - 
+(Must Remember: the website should be easily and highly scalable so a developer can easily add, modify, delete info and data without requiring much code changes, make it highly easier using shared and utility functions and other Nextjs features as per needed)
+
+the portfolio would have 5 section (section's order should be strictly followed)
+The portfolio website will be a single page website but its sections can be navigated by navbar
+the entire page will use public/website-background.png as its background even though all features can pick other background matchable theme and color as per needed.
+-----------------------------------------------------------------------
+# section-1 (Home):
+
+## Navigation Bar (Sticky transparent Navbar while scrolling while button should be clearly visible)
+> A fully responsive navigation bar. An unique attractive SVG logo 'Forhad' can be made to insert it to the left corner of Navbar
+> Easy access to all sections of the portfolio from the navbar (middle of navbar).
+> 'Resume' Download Button (Right corner of Navbar)
+A clearly visible button in the hero section that allows visitors to view and download your resume with a single click. (**Resume will be downloaded with that click.**). 
+resume link: https://drive.google.com/file/d/1HjfeRQoODUXKBAnJHBHoZCms3Kwpa_7R/view?usp=sharing
+
+## Designation and Introduction
+Display your professional designation Full Stack Web Developer
+Include the professional photo of from public file (public/my-face-image.png)
+
+## Clearly Showing my Email: forhaduddin823@gmail.com and Phone number: +8801833568856
+
+## Social Links:
+Embed buttons linking to my relevant social media profiles (e.g 
+GitHub: https://github.com/forhad823 , 
+LinkedIn: https://www.linkedin.com/in/md-forhad-uddin-b65496231 , 
+Twitter: https://x.com/forhaduddin823 , 
+Facebook: https://web.facebook.com/mdforhad.forhad.7186896
+)
+-------------------------------------------
+
+# section-2. About Me Section (very concise)
+
+Write a detailed introduction about yourself, including:
+My programming journey.
+The type of work i enjoy.
+My hobbies and interests outside of programming you know from our previous chats.
+Showcase my personality in this section.
+
+----------------------------------------------
+
+# section-3. Projects Section (At Least 3 Projects)
+
+Showcase at least three of my best projects in card format.
+Projects priority order: (for only front-end projects don't show server-side button)
+1) Hemacue: Blood-Donation and Emergency Service platform 
+   Live: https://hemacue-frontend.vercel.app
+   client-side Repo: https://github.com/forhad823/hemacue-frontend-a7b7
+   Server-side Repo: https://github.com/forhad823/hemacue-backend-A6-B7
+2) Rentnest: Rental Property Marketplace
+   Live: https://my-rent-nest-frontend-a5-b7.vercel.app
+   client-side Repo: https://github.com/forhad823/MY-RentNest-Frontend-A5B7
+   Server-side Repo: https://github.com/forhad823/My-RentNest-Backend-A4B7
+3) LawBD: Lawyer Finding and Booking Appoinments platform (front-end app)
+   Live: https://cosmic-marshmallow-0260e0.netlify.app
+   client-side Repo: https://github.com/forhad823/Law.BD-lawyer-appointment-booking-app-
+
+Each project card must contain:
+Project name
+Project image (use the corresponding project image from public folder)
+"Details" button. 
+Clicking the "Details" button should that will open an interactive modal containing:
+Main technology stack used
+Brief description
+Live project link
+GitHub repository links (client and server)
+Challenges faced while developing the project
+Potential improvements and future plans for the project
+
+** (checkout and analyze my-projects-readme folder to get all necessary information of every project for 'Details' modal) **
+------------------------------------------------ 
+
+# section-4. Skills
+
+## Display your skills in a visually appealing graphical format. (checkout and analyze my-projects-readme folder to get my all earned skills along with Firebase and mongoose)
+Categorize skills if necessary (e.g., Frontend, Backend, Tools, Programming Language: Typescript, Database: Postgresql, MongoDB).
+
+## Educational Qualification:
+Higher Secondary (Science) Group: GPA- 4.00 out of 5:00.
+College: National Model college
+
+-------------------------------------------------------
+
+# section-5: Contact and footer (navbar navigates to this section using contact button)
+## Contact Information
+Provide an easy way for visitors to contact me directly.
+Include:
+Email address,Phone number,and all active social icons with links i remarked above.
+## a form to send message to my email.
+## A simple and elegant footer can be added for better presentation.
