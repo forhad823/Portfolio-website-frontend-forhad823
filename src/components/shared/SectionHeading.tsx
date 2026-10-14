@@ -41,7 +41,9 @@ export function SectionHeading({
       <Tag
         className={cn(
           "font-bold tracking-tight text-foreground",
-          Tag === "h1" ? "text-4xl sm:text-5xl lg:text-6xl" : "text-3xl sm:text-4xl",
+          Tag === "h1"
+            ? "text-4xl sm:text-5xl lg:text-6xl"
+            : "text-3xl sm:text-4xl",
           titleClassName,
         )}
       >

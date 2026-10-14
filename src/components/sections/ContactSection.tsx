@@ -5,12 +5,7 @@ import { Mail, Phone, Send } from "lucide-react";
 import { contactInfo, socialLinks } from "@/data/contact";
 import { PageContainer } from "@/components/shared/PageContainer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import {
-  FaFacebook,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-} from "react-icons/fa6";
+import { FaFacebook, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 
 /**
@@ -77,7 +72,9 @@ export function ContactSection() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
+  const [touched, setTouched] = useState<
+    Partial<Record<keyof FormFields, boolean>>
+  >({});
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -90,7 +87,9 @@ export function ContactSection() {
     }
   }
 
-  function handleBlur(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleBlur(
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     const { name } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
     setErrors(validate(fields));
@@ -184,7 +183,7 @@ export function ContactSection() {
                   Social Profiles
                 </p>
                 <ul
-                  role="list"
+                  // role="list"
                   aria-label="Social media profiles"
                   className="flex flex-wrap gap-2.5"
                 >
@@ -224,7 +223,10 @@ export function ContactSection() {
                   htmlFor="contact-name"
                   className="text-sm font-medium text-foreground"
                 >
-                  Name <span aria-hidden="true" className="text-destructive">*</span>
+                  Name{" "}
+                  <span aria-hidden="true" className="text-destructive">
+                    *
+                  </span>
                 </label>
                 <input
                   id="contact-name"
@@ -233,7 +235,9 @@ export function ContactSection() {
                   autoComplete="name"
                   required
                   aria-required="true"
-                  aria-describedby={errors.name && touched.name ? "error-name" : undefined}
+                  aria-describedby={
+                    errors.name && touched.name ? "error-name" : undefined
+                  }
                   aria-invalid={!!(errors.name && touched.name)}
                   value={fields.name}
                   onChange={handleChange}
@@ -248,7 +252,11 @@ export function ContactSection() {
                   )}
                 />
                 {errors.name && touched.name && (
-                  <p id="error-name" role="alert" className="text-xs text-destructive">
+                  <p
+                    id="error-name"
+                    role="alert"
+                    className="text-xs text-destructive"
+                  >
                     {errors.name}
                   </p>
                 )}
@@ -260,7 +268,10 @@ export function ContactSection() {
                   htmlFor="contact-email"
                   className="text-sm font-medium text-foreground"
                 >
-                  Email <span aria-hidden="true" className="text-destructive">*</span>
+                  Email{" "}
+                  <span aria-hidden="true" className="text-destructive">
+                    *
+                  </span>
                 </label>
                 <input
                   id="contact-email"
@@ -269,7 +280,9 @@ export function ContactSection() {
                   autoComplete="email"
                   required
                   aria-required="true"
-                  aria-describedby={errors.email && touched.email ? "error-email" : undefined}
+                  aria-describedby={
+                    errors.email && touched.email ? "error-email" : undefined
+                  }
                   aria-invalid={!!(errors.email && touched.email)}
                   value={fields.email}
                   onChange={handleChange}
@@ -284,7 +297,11 @@ export function ContactSection() {
                   )}
                 />
                 {errors.email && touched.email && (
-                  <p id="error-email" role="alert" className="text-xs text-destructive">
+                  <p
+                    id="error-email"
+                    role="alert"
+                    className="text-xs text-destructive"
+                  >
                     {errors.email}
                   </p>
                 )}
@@ -296,7 +313,10 @@ export function ContactSection() {
                   htmlFor="contact-message"
                   className="text-sm font-medium text-foreground"
                 >
-                  Message <span aria-hidden="true" className="text-destructive">*</span>
+                  Message{" "}
+                  <span aria-hidden="true" className="text-destructive">
+                    *
+                  </span>
                 </label>
                 <textarea
                   id="contact-message"
@@ -304,7 +324,11 @@ export function ContactSection() {
                   rows={5}
                   required
                   aria-required="true"
-                  aria-describedby={errors.message && touched.message ? "error-message" : undefined}
+                  aria-describedby={
+                    errors.message && touched.message
+                      ? "error-message"
+                      : undefined
+                  }
                   aria-invalid={!!(errors.message && touched.message)}
                   value={fields.message}
                   onChange={handleChange}
@@ -319,7 +343,11 @@ export function ContactSection() {
                   )}
                 />
                 {errors.message && touched.message && (
-                  <p id="error-message" role="alert" className="text-xs text-destructive">
+                  <p
+                    id="error-message"
+                    role="alert"
+                    className="text-xs text-destructive"
+                  >
                     {errors.message}
                   </p>
                 )}

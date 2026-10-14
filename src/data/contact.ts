@@ -16,11 +16,7 @@ export const contactInfo = {
   location: "Bangladesh",
 } as const;
 
-export type SocialPlatform =
-  | "github"
-  | "linkedin"
-  | "twitter"
-  | "facebook";
+export type SocialPlatform = "github" | "linkedin" | "twitter" | "facebook";
 
 export interface SocialLink {
   platform: SocialPlatform;
