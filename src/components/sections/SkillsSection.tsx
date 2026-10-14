@@ -41,7 +41,7 @@ export function SkillsSection() {
                   className="glass-surface rounded-2xl p-5"
                 >
                   {/* Category label */}
-                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
+                  <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-secondary-foreground">
                     {category.label}
                   </h3>
 
@@ -51,7 +51,7 @@ export function SkillsSection() {
                       <Badge
                         key={skill.name}
                         variant="outline"
-                        className="text-xs font-medium"
+                        className="text-xs font-medium border-blue-300"
                       >
                         {skill.icon && (
                           <span className="mr-2">
