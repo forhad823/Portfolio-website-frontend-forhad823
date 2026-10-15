@@ -171,7 +171,7 @@ This is a static-first Next.js app and deploys to any Node host or static-friend
 
 - **Email:** forhaduddin823@gmail.com
 - **GitHub:** [@forhad823](https://github.com/forhad823)
-- **LinkedIn:** [md-forhad-uddin](https://www.linkedin.com/in/md-forhad-uddin-b65496231)
+- **LinkedIn:** [md-forhad-uddin](https://www.linkedin.com/in/forhad823)
 - **X / Twitter:** [@forhaduddin823](https://x.com/forhaduddin823)
 
 ## License

@@ -51,7 +51,7 @@ Use the facts and URLs in `portfolio-project-requirement.txt` as the source of t
 - Email: `forhaduddin823@gmail.com`.
 - Phone: `+8801833568856`.
 - GitHub: `https://github.com/forhad823`
-- LinkedIn: `https://www.linkedin.com/in/md-forhad-uddin-b65496231`
+- LinkedIn: `https://www.linkedin.com/in/forhad823`
 - X/Twitter: `https://x.com/forhaduddin823`
 - Facebook: `https://web.facebook.com/mdforhad.forhad.7186896`
 - Resume: `https://drive.google.com/uc?export=download&id=1HjfeRQoODUXKBAnJHBHoZCms3Kwpa_7R`

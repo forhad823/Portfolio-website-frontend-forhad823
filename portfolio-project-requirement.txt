@@ -30,7 +30,7 @@ Include the professional photo of from public file (public/my-face-image.png)
 ## Social Links:
 Embed buttons linking to my relevant social media profiles (e.g 
 GitHub: https://github.com/forhad823 , 
-LinkedIn: https://www.linkedin.com/in/md-forhad-uddin-b65496231 , 
+LinkedIn: https://www.linkedin.com/in/forhad823 , 
 Twitter: https://x.com/forhaduddin823 , 
 Facebook: https://web.facebook.com/mdforhad.forhad.7186896
 )

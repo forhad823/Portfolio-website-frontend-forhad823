@@ -38,7 +38,7 @@ export const socialLinks: SocialLink[] = [
   {
     platform: "linkedin",
     label: "LinkedIn",
-    url: "https://www.linkedin.com/in/md-forhad-uddin-b65496231",
+    url: "https://www.linkedin.com/in/forhad823",
     icon: "FaLinkedin",
     ariaLabel: "Forhad's LinkedIn profile",
   },
