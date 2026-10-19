@@ -60,41 +60,37 @@ export function SkillsSection() {
                   </div>
                 </div>
               ))}
+
+              {/* education card start */}
+
+              <div className="flex flex-col gap-4">
+                <div className="glass-surface flex flex-col gap-4 rounded-2xl p-5">
+                  {/* Icon row */}
+                  <div className="flex items-center gap-4 text-secondary-foreground">
+                    <GraduationCap size={20} aria-hidden="true" />
+                    <h3 className="text-xs font-semibold uppercase tracking-wider">
+                      Education
+                    </h3>
+                  </div>
+
+                  {/* Level + group */}
+                  <div>
+                    <p className="text-sm font-semibold leading-snug text-foreground">
+                      Higher Secondary Certificate (HSC)
+                    </p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      Group: Science
+                    </p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      Institution: National Model College
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* education card end */}
             </div>
           </div>
-        </div>
-        {/* ── Right: Education card ── */}
-        <div className="flex flex-col gap-4">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-primary">
-            Education
-          </h3>
-
-          {education.map((edu) => (
-            <div
-              key={`${edu.institution}-${edu.level}`}
-              className="glass-surface flex flex-col gap-4 rounded-2xl p-5"
-            >
-              {/* Icon row */}
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <GraduationCap size={22} aria-hidden="true" />
-              </div>
-
-              {/* Level + group */}
-              <div>
-                <p className="text-sm font-semibold leading-snug text-foreground">
-                  {edu.level}
-                </p>
-                <p className="mt-0.5 text-xs text-muted-foreground">
-                  Group: {edu.group}
-                </p>
-              </div>
-
-              {/* Institution */}
-              <p className="text-sm font-medium text-foreground">
-                {edu.institution}
-              </p>
-            </div>
-          ))}
         </div>
       </PageContainer>
     </section>
