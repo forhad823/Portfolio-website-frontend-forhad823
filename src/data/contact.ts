@@ -12,7 +12,7 @@ export const contactInfo = {
   email: "forhaduddin823@gmail.com",
   phone: "+8801833568856",
   resumeUrl:
-    "https://drive.google.com/uc?export=download&id=1HjfeRQoODUXKBAnJHBHoZCms3Kwpa_7R",
+    "https://drive.google.com/uc?export=download&id=1Iw-FBSbW0-ESESsJ7twrbQxTQUo1l-GK",
   location: "Bangladesh",
 } as const;
 
