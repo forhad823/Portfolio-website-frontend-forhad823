@@ -76,13 +76,13 @@ export function SkillsSection() {
                   {/* Level + group */}
                   <div>
                     <p className="text-sm font-semibold leading-snug text-foreground">
-                      Higher Secondary Certificate (HSC)
+                      Computer Science Coursework
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      Group: Science
+                      Duration: 2022-2023
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      Institution: National Model College
+                      Institution: University of the People
                     </p>
                   </div>
                 </div>
