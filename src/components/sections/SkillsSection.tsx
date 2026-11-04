@@ -82,7 +82,7 @@ export function SkillsSection() {
                       Duration: 2022-2023
                     </p>
                     <p className="mt-0.5 text-xs text-muted-foreground">
-                      Institution: University of the People
+                      Institution: University of the People 
                     </p>
                   </div>
                 </div>
