@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { Download, Mail, Phone } from "lucide-react";
 import { PageContainer } from "@/components/shared/PageContainer";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SocialLinks } from "@/components/shared/SocialLinks";
@@ -9,131 +9,133 @@ import { contactInfo } from "@/data/contact";
  * HomeSection — hero section with profile photo, name, designation,
  * contact details, social links, and resume CTA.
  *
- * The largest viewport-height section on the page — ensures the hero
- * dominates the first impression. Balanced two-column layout on desktop
- * collapses to a single stack on mobile with the image shown first.
+ * Layout:
+ *  - Desktop (lg+): two columns. The text column defines the row height and
+ *    the photo column stretches to match it exactly, so both sides always
+ *    line up top and bottom, whatever the content length.
+ *  - Mobile / tablet: single column. The photo comes first, then name,
+ *    designation and the rest of the content underneath.
+ *
+ * The photo uses `next/image` with `fill`, so it has no intrinsic height of
+ * its own and can never push the row taller than the text column.
  */
 export function HomeSection() {
   return (
     <section
       id="home"
       aria-label="Home"
-      className="flex min-h-[calc(100dvh-4rem)] items-center scroll-mt-16 py-12"
+      className="flex min-h-[calc(100dvh-4rem)] scroll-mt-16 items-center py-10 sm:py-12"
     >
       <PageContainer>
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-          {/* ── Left: Text content ── */}
-          <div className="flex flex-col gap-4">
-            {/* Name + designation */}
-            <SectionHeading
-              as="h1"
-              title={contactInfo.displayName}
-              align="left"
-              showAccentLine={false}
-              titleClassName="text-5xl sm:text-6xl lg:text-7xl"
+        {/* items-stretch → both columns share the same height on desktop */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-14">
+          {/* ── Photo ──
+              DOM order keeps the <h1> first for screen readers and SEO;
+              `order-first` puts the photo on top for mobile and
+              `lg:order-last` moves it to the right on desktop. */}
+          <div className="relative isolate order-first mx-auto aspect-4/5 w-full max-w-xs sm:max-w-sm lg:order-last lg:ml-auto lg:mr-0 lg:aspect-auto lg:min-h-104 lg:max-w-md">
+            {/* Soft glow behind the frame */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-3xl"
             />
 
-            <p className="text-2xl font-medium text-primary sm:text-3xl">
-              {contactInfo.designation}
-            </p>
-
-            {/* Short introduction */}
-            <p className="max-w-xl text-base text-muted-foreground sm:text-lg">
-              I'm from{" "}
-              <span className="font-medium text-foreground">
-                {contactInfo.location}
-              </span>{" "}
-              focused on building and maintaining industry-standard,
-              high-quality web applications with modern technologies.
-            </p>
-
-            {/* Contact details — email and phone */}
-            <div className="flex flex-col md:flex-row md:gap-4 gap-3 md:justify-between  text-sm sm:text-base">
-              <a
-                href={`mailto:${contactInfo.email}`}
-                className="group flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Mail
-                  size={18}
-                  aria-hidden="true"
-                  className="shrink-0 text-primary"
+            {/* Frame fills the whole grid cell */}
+            <div className="glass-surface absolute inset-0 rounded-2xl border-2 border-primary/30 p-2 shadow-xl shadow-primary/10">
+              <div className="relative h-full w-full overflow-hidden rounded-xl">
+                <Image
+                  src="/my-face-image.png"
+                  alt={`${contactInfo.name} — ${contactInfo.designation}`}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 28rem, (min-width: 640px) 24rem, 90vw"
+                  className="object-cover object-top"
                 />
-                <span className="underline decoration-primary/30 decoration-1 underline-offset-2 group-hover:decoration-primary">
-                  {contactInfo.email}
-                </span>
-              </a>
-
-              <a
-                href={`tel:${contactInfo.phone}`}
-                className="group flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-              >
-                <Phone
-                  size={18}
-                  aria-hidden="true"
-                  className="shrink-0 text-primary"
-                />
-                <span className="underline decoration-primary/30 decoration-1 underline-offset-2 group-hover:decoration-primary">
-                  {contactInfo.phone}
-                </span>
-              </a>
-            </div>
-
-            {/* --------Social links + Resume download button -------*/}
-            <div className="flex flex-col md:flex-row md:gap-4 gap-3 mt-2 justify-between items-start md:items-center">
-              {/* Social links */}
-              <SocialLinks size="md" iconSize={20} className="mt-1" />
-
-              {/* Resume download button */}
-              <div className="mt-2">
-                <a
-                  href={contactInfo.resumeUrl}
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-                >
-                  Download Resume
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                </a>
               </div>
             </div>
           </div>
 
-          {/* ── Right: Profile photo ── */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* Glow effect behind the image */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-3xl"
+          {/* ── Text content ──
+              justify-center keeps the content visually centred against
+              the photo if the photo ever ends up taller than the text. */}
+          <div className="flex flex-col justify-center gap-5">
+            {/* Name + designation */}
+            <div className="flex flex-col gap-2">
+              <SectionHeading
+                as="h1"
+                title={contactInfo.displayName}
+                align="left"
+                showAccentLine={false}
+                titleClassName="text-4xl sm:text-6xl lg:text-7xl tracking-tight"
               />
 
-              {/* Profile image */}
-              <div className="glass-surface relative overflow-hidden rounded-2xl border-2 border-primary/30 p-2">
-                <Image
-                  src="/my-face-image.png" 
-                  alt={`${contactInfo.name} — Full Stack Web Developer`}
-                  width={400}
-                  height={400}
-                  priority
-                  className="h-auto w-full max-w-sm rounded-xl object-cover"
-                />
-              </div>
+              <p className="text-xl font-medium text-primary sm:text-2xl lg:text-3xl">
+                {contactInfo.designation}
+              </p>
+            </div>
+
+            {/* Short introduction */}
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              I&apos;m from{" "}
+              <span className="font-medium text-foreground">
+                {contactInfo.location}
+              </span>
+              , focused on building and maintaining industry-standard,
+              high-quality web applications with modern technologies.
+            </p>
+
+            {/* Contact details — email and phone */}
+            <ul className="flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-x-6 sm:text-base">
+              <li>
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="group inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                >
+                  <Mail
+                    size={18}
+                    aria-hidden="true"
+                    className="shrink-0 text-primary"
+                  />
+                  <span className="underline decoration-primary/30 decoration-1 underline-offset-4 group-hover:decoration-primary">
+                    {contactInfo.email}
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  className="group inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                >
+                  <Phone
+                    size={18}
+                    aria-hidden="true"
+                    className="shrink-0 text-primary"
+                  />
+                  <span className="underline decoration-primary/30 decoration-1 underline-offset-4 group-hover:decoration-primary">
+                    {contactInfo.phone}
+                  </span>
+                </a>
+              </li>
+            </ul>
+
+            {/* Divider separates identity from actions */}
+            <div
+              aria-hidden="true"
+              className="h-px w-full max-w-xl bg-border"
+            />
+
+            {/* Resume CTA + social links */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a
+                href={contactInfo.resumeUrl}
+                download
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              >
+                Download Resume
+                <Download size={18} aria-hidden="true" />
+              </a>
+
+              <SocialLinks size="md" iconSize={20} />
             </div>
           </div>
         </div>
